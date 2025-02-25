@@ -1,40 +1,65 @@
-#include <stdio.h>
+
 
 // Desafio Batalha Naval - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
-// Siga os comentários para implementar cada parte do desafio.
+#include <stdio.h>
+
+#define TAMANHO_TABULEIRO 10
+
+// Função para exibir o tabuleiro
+void exibirTabuleiro(char tabuleiro[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO]) {
+    printf("Tabuleiro de Batalha Naval:\n");
+    for (int i = 0; i < TAMANHO_TABULEIRO; i++) {
+        for (int j = 0; j < TAMANHO_TABULEIRO; j++) {
+            printf("%c ", tabuleiro[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+// Função para posicionar o navio vertical
+void posicionarNavioVertical(char tabuleiro[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO], int x, int y, int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
+        tabuleiro[x + i][y] = '3';  // '3' para representar a parte do navio vertical
+    }
+}
+
+// Função para posicionar o navio horizontal
+void posicionarNavioHorizontal(char tabuleiro[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO], int x, int y, int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
+        tabuleiro[x][y + i] = '3';  // '3' para representar a parte do navio horizontal
+    }
+}
 
 int main() {
-    // Nível Novato - Posicionamento dos Navios
-    // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
-    // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
-    // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
+    // Inicializar o tabuleiro com água (representada por 'O')
+    char tabuleiro[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO];
+    for (int i = 0; i < TAMANHO_TABULEIRO; i++) {
+        for (int j = 0; j < TAMANHO_TABULEIRO; j++) {
+            tabuleiro[i][j] = 'O';  // 'O' significa água
+        }
+    }
 
-    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
-    // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
-    // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
-    // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
+    // Definir as coordenadas e tamanhos dos navios
+    int xVertical = 2, yVertical = 3, tamanhoVertical = 4;
+    int xHorizontal = 5, yHorizontal = 1, tamanhoHorizontal = 3;
 
-    // Nível Mestre - Habilidades Especiais com Matrizes
-    // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
-    // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
-    // Sugestão: Exiba o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas atingidas.
+    // Posicionar os navios no tabuleiro
+    posicionarNavioVertical(tabuleiro, xVertical, yVertical, tamanhoVertical);
+    posicionarNavioHorizontal(tabuleiro, xHorizontal, yHorizontal, tamanhoHorizontal);
 
-    // Exemplos de exibição das habilidades:
-    // Exemplo para habilidade em cone:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 1 1 1 1 1
-    
-    // Exemplo para habilidade em octaedro:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 0 0 1 0 0
+    // Exibir as coordenadas dos navios
+    printf("\nCoordenadas do Navio Vertical (3):\n");
+    for (int i = 0; i < tamanhoVertical; i++) {
+        printf("Coordenada (%d, %d)\n", xVertical + i, yVertical);
+    }
 
-    // Exemplo para habilidade em cruz:
-    // 0 0 1 0 0
-    // 1 1 1 1 1
-    // 0 0 1 0 0
+    printf("\nCoordenadas do Navio Horizontal (3):\n");
+    for (int i = 0; i < tamanhoHorizontal; i++) {
+        printf("Coordenada (%d, %d)\n", xHorizontal, yHorizontal + i);
+    }
+
+    // Exibir o tabuleiro final
+    exibirTabuleiro(tabuleiro);
 
     return 0;
 }
